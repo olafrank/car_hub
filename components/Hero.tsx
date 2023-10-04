@@ -1,9 +1,9 @@
 "use client";
 import Image from "next/image"
 import { CustomButton } from "."
-import { CustomButtonProps } from "@/types";
 
-const Hero = ({ title, containerStyles, handleClick }: CustomButtonProps) => {
+
+const Hero = () => {
     const handleScroll = () => {
 
     }
