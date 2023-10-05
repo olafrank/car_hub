@@ -4,7 +4,7 @@ import { useState } from "react"
 import Image from "next/image";
 import { carProps } from "@/types";
 import { CarDetails, CustomButton } from ".";
-import { calculateCarRent } from "@/utils";
+import { calculateCarRent, generateCarImageUrl } from "@/utils";
 
 interface CarCardProps {
   car: carProps
@@ -12,7 +12,7 @@ interface CarCardProps {
 
 const CarCard = ({ car }: CarCardProps) => {
 
-  const [isOpen , setisOpen  ] = useState(false)
+  const [isOpen, setisOpen] = useState(false)
 
   const { city_mpg, year, make, transmission, drive, model } = car;
 
@@ -33,7 +33,7 @@ const CarCard = ({ car }: CarCardProps) => {
         </span>
       </p>
       <div className="relative w-full h-40 my-3 object-contain">
-        <Image src="/hero.png" alt="car" fill priority className="object-contain" />
+        <Image src={generateCarImageUrl(car)} alt="car" fill priority className="object-contain" />
       </div>
       <div className="relative flex w-full mt-2">
         <div className="flex group-hover:invisible w-full justify-between text-grey">
@@ -53,13 +53,13 @@ const CarCard = ({ car }: CarCardProps) => {
         </div>
         <div className="car-card__btn-container">
           <CustomButton title="view More" containerStyles="w-full py-[16px] rounded-full bg-primary-blue"
-          textStyles="text-white text-[14px] leading-[17px] font-bold"
-          rightIcon="/right-arrow.svg"
-          handleClick={()=>setisOpen(true)}/>
+            textStyles="text-white text-[14px] leading-[17px] font-bold"
+            rightIcon="/right-arrow.svg"
+            handleClick={() => setisOpen(true)} />
 
         </div>
       </div>
-  <CarDetails isOpen={isOpen} closedModal={()=>setisOpen(false)} car={car}/>
+      <CarDetails isOpen={isOpen} closedModal={() => setisOpen(false)} car={car} />
 
     </div>
   )
